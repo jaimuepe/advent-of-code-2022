@@ -1,9 +1,15 @@
 #pragma once
 
 #include <array>
+#include <format>
+#include <iostream>
 #include <vector>
 #include <string>
-#include <iostream>
+
+void print_title(int day, char c)
+{
+	std::cout << "### ADVENT OF CODE - DAY " << std::format("{:02}", day) << c << '\n' << '\n';
+}
 
 std::vector<std::string> get_lines()
 {

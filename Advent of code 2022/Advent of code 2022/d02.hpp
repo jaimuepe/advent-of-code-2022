@@ -42,9 +42,10 @@ namespace d02
 
 	namespace a
 	{
-
 		void run()
 		{
+			print_title(2, 'A');
+
 			auto lines = get_lines();
 
 			int score = 0;
@@ -91,6 +92,8 @@ namespace d02
 
 		void run()
 		{
+			print_title(2, 'B');
+
 			auto lines = get_lines();
 
 			int score = 0;

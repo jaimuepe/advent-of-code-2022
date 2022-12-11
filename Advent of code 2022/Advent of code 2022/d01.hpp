@@ -28,6 +28,8 @@ namespace d01
 
 		void run()
 		{
+			print_title(1, 'B');
+
 			auto lines = get_lines();
 
 			int sum = 0;
