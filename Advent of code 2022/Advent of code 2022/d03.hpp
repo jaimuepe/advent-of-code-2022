@@ -65,33 +65,24 @@ namespace d03
 
 			int sum = 0;
 
-			for (auto& line : lines)
+			for (size_t i = 0; i < lines.size(); i += 3)
 			{
-				auto& rucksack = line;
+				auto& rucksack0 = lines[i];
+				auto& rucksack1 = lines[i + 1];
+				auto& rucksack2 = lines[i + 2];
 
-				size_t rucksack_size = rucksack.length();
-				size_t compartment_size = rucksack_size / 2;
+				char badge = '\0';
 
-				for (size_t i = 0; i < compartment_size; i++)
+				for (char& c : rucksack0) 
 				{
-					bool found = false;
-
-					char a = rucksack[i];
-
-					for (size_t j = compartment_size; j < rucksack_size; j++)
+					if (rucksack1.find(c) != -1 && rucksack2.find(c) != -1)
 					{
-						char b = rucksack[j];
-
-						if (a == b)
-						{
-							found = true;
-							sum += to_priority(a);
-							break;
-						}
+						badge = c;
+						break;
 					}
-
-					if (found) break;
 				}
+
+				sum += to_priority(badge);
 			}
 
 			std::cout << sum << '\n';
