@@ -29,5 +29,11 @@
     <ClInclude Include="d02.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="d03.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="template.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
