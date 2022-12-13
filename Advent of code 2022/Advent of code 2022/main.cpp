@@ -1,14 +1,15 @@
-#include "d01.hpp"
-#include "d02.hpp"
-#include "d03.hpp"
+#include "problem_01.hpp"
+#include "problem_02.hpp"
+#include "problem_03.hpp"
 
 int main()
 {
-	// d01::b::run();
-	// d02::a::run();
-	// d02::b::run();
-	// d03::a::run();
-	d03::b::run();
+	//aoc2022::problem_01().run_a();
+	//aoc2022::problem_01().run_b();
+	//aoc2022::problem_02().run_a();
+	//aoc2022::problem_02().run_b();
+	aoc2022::problem_03().run_a();
+	aoc2022::problem_03().run_b();
 
 	return 0;
 }

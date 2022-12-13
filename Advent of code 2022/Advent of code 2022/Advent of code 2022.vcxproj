@@ -128,14 +128,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="problem_01.hpp" />
+    <ClInclude Include="problem_02.hpp" />
+    <ClInclude Include="problem_03.hpp" />
+    <ClInclude Include="problem.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="d01.hpp" />
-    <ClInclude Include="common.hpp" />
-    <ClInclude Include="d02.hpp" />
-    <ClInclude Include="d03.hpp" />
-    <ClInclude Include="template.hpp" />
+    <Text Include="01.txt">
+      <DeploymentContent>true</DeploymentContent>
+    </Text>
+    <Text Include="01_TEST.txt" />
+    <Text Include="02.txt" />
+    <Text Include="02_TEST.txt" />
+    <Text Include="03.txt" />
+    <Text Include="03_TEST.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

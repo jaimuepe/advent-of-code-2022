@@ -1,25 +1,18 @@
 #pragma once
 
-#include "common.hpp"
+#include "problem.hpp"
 
-namespace d03
+namespace aoc2022
 {
 	constexpr int DAY = 3;
 
-	int to_priority(char c)
+	class problem_03 : public problem
 	{
-		if (c > 'Z') return c - 'a' + 1;
-		return c - 'A' + 27;
-	}
+	public:
+		problem_03() : problem(3) {}
 
-	namespace a
-	{
-		void run()
+		A_IMPL()
 		{
-			print_title(DAY, 'A');
-
-			auto lines = get_lines();
-
 			int sum = 0;
 
 			for (auto& line : lines)
@@ -51,18 +44,11 @@ namespace d03
 				}
 			}
 
-			std::cout << sum << '\n';
+			print_result(sum);
 		}
-	}
 
-	namespace b
-	{
-		void run()
+		B_IMPL()
 		{
-			print_title(DAY, 'B');
-
-			auto lines = get_lines();
-
 			int sum = 0;
 
 			for (size_t i = 0; i < lines.size(); i += 3)
@@ -73,7 +59,7 @@ namespace d03
 
 				char badge = '\0';
 
-				for (char& c : rucksack0) 
+				for (char& c : rucksack0)
 				{
 					if (rucksack1.find(c) != -1 && rucksack2.find(c) != -1)
 					{
@@ -85,7 +71,15 @@ namespace d03
 				sum += to_priority(badge);
 			}
 
-			std::cout << sum << '\n';
+			print_result(sum);
 		}
-	}
+
+	private:
+
+		int to_priority(char c)
+		{
+			if (c > 'Z') return c - 'a' + 1;
+			return c - 'A' + 27;
+		}
+	};
 }
