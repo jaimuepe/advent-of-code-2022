@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="problem_01.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -28,6 +25,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="problem_02.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="problem_04.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -48,6 +48,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="03_TEST.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="04_TEST.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="04.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

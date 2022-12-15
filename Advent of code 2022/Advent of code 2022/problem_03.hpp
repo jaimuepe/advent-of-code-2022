@@ -4,8 +4,6 @@
 
 namespace aoc2022
 {
-	constexpr int DAY = 3;
-
 	class problem_03 : public problem
 	{
 	public:
