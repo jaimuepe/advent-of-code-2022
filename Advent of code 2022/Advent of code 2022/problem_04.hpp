@@ -4,8 +4,6 @@
 
 namespace aoc2022
 {
-	constexpr int DAY = 3;
-
 	struct section_assignment
 	{
 		int min;
