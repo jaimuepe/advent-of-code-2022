@@ -134,6 +134,7 @@
     <ClInclude Include="problem.hpp" />
     <ClInclude Include="problem_04.hpp" />
     <ClInclude Include="problem_05.hpp" />
+    <ClInclude Include="problem_06.hpp" />
     <ClInclude Include="problem_template.h" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,8 @@
     <Text Include="04_TEST.txt" />
     <Text Include="05.txt" />
     <Text Include="05_TEST.txt" />
+    <Text Include="06.txt" />
+    <Text Include="06_TEST.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

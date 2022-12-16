@@ -36,6 +36,9 @@
     <ClInclude Include="problem_template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="problem_06.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="01.txt">
@@ -66,6 +69,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="05.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="06_TEST.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="06.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
