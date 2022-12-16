@@ -97,16 +97,13 @@ namespace aoc2022
 			{
 				auto& line = lines[index++];
 
-				int crate_index = 0;
-
 				bool exit = false;
 
-				while (true)
+				int crate_index = 0;
+				int j = 1;
+
+				while (j < line.size())
 				{
-					int j = 1 + 4 * crate_index;
-
-					if (j >= line.size()) break;
-
 					char c = line[j];
 
 					if (std::isdigit(c))
@@ -127,6 +124,7 @@ namespace aoc2022
 					}
 
 					crate_index++;
+					j = 1 + 4 * crate_index;
 				}
 
 				if (exit)
