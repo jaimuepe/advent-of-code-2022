@@ -8,6 +8,8 @@
 #include <string>
 #include <vector>
 
+#include "utils.hpp"
+
 namespace aoc2022
 {
 #define A_IMPL() protected: virtual void run_a_impl(std::vector<std::string>& lines) override
@@ -65,7 +67,8 @@ namespace aoc2022
 			std::cout << "### ADVENT OF CODE - DAY " << std::format("{:02}", m_day) << " " << suffix << '\n' << '\n';
 		}
 
-		void print_result(int result)
+		template<class myType>
+		void print_result(myType result)
 		{
 			std::cout << "Result: " << result << '\n' << '\n';
 		}
@@ -73,20 +76,5 @@ namespace aoc2022
 	private:
 
 		int m_day;
-
-		std::vector<std::string> read_file(std::string& file_name) const
-		{
-			std::vector<std::string> result{};
-
-			std::ifstream ifs{ file_name };
-
-			std::string line;
-			while (std::getline(ifs, line))
-			{
-				result.push_back(line);
-			}
-
-			return result;
-		}
 	};
 }
