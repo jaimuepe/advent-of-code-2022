@@ -2,6 +2,8 @@
 
 #include "problem.hpp"
 
+#include <array>
+
 namespace aoc2022
 {
 	constexpr size_t N = 3;

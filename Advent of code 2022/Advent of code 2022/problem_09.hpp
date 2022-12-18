@@ -1,7 +1,8 @@
 #pragma once
 
-#include <set>
 #include "problem.hpp"
+
+#include <set>
 
 namespace aoc2022
 {

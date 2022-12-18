@@ -2,6 +2,8 @@
 
 #include "problem.hpp"
 
+#include <memory>
+
 namespace aoc2022
 {
 	constexpr long long A_MAX_SIZE = 100000;

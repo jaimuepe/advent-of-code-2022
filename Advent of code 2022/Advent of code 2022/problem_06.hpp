@@ -7,7 +7,6 @@ namespace aoc2022
 	constexpr int MARKER_LENGTH_A = 4;
 	constexpr int MARKER_LENGTH_B = 14;
 
-
 	class problem_06 : public problem
 	{
 	public:

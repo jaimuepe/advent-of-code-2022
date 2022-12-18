@@ -1,14 +1,9 @@
 #pragma once
 
-#include <array>
-#include <iostream>
-#include <format>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-
 #include "utils.hpp"
+
+#include <format>
+#include <iostream>
 
 namespace aoc2022
 {

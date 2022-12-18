@@ -1,6 +1,7 @@
 #pragma once
 
 #include "problem.hpp"
+
 #include <deque>
 
 namespace aoc2022

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "grid.hpp"
 #include "problem.hpp"
 
 namespace aoc2022

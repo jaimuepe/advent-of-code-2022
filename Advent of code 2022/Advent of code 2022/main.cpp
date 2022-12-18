@@ -7,6 +7,7 @@
 #include "problem_07.hpp"
 #include "problem_08.hpp"
 #include "problem_09.hpp"
+#include "problem_10.hpp"
 
 int main()
 {
@@ -27,8 +28,9 @@ int main()
 	//aoc2022::problem_08().run_a();
 	//aoc2022::problem_08().run_b();
 	//aoc2022::problem_09().run_a();
-	aoc2022::problem_09().run_a();
-	aoc2022::problem_09().run_b();
+	//aoc2022::problem_09().run_a();
+	//aoc2022::problem_09().run_b();
+	aoc2022::problem_10().run_a_test();
 
 	return 0;
 }
