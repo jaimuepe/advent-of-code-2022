@@ -85,12 +85,12 @@ namespace aoc2022
 			int value = grid.get(row, col);
 
 			int total = 0;
-			for (int i = r - 1; i >= 0; i--)
+			for (int i = static_cast<int>(r - 1); i >= 0; i--)
 			{
 				total++;
 
-				int x = direction == axis::HORIZONTAL ? i : col;
-				int y = direction == axis::VERTICAL ? i : row;
+				size_t x = direction == axis::HORIZONTAL ? i : col;
+				size_t y = direction == axis::VERTICAL ? i : row;
 
 				int height = grid.get(y, x);
 
@@ -102,15 +102,15 @@ namespace aoc2022
 			}
 			scenic_score *= total;
 
-			int max = direction == axis::HORIZONTAL ? grid.cols() : grid.rows();
+			size_t max = direction == axis::HORIZONTAL ? grid.cols() : grid.rows();
 
 			total = 0;
-			for (int i = r + 1; i < max; i++)
+			for (size_t i = r + 1; i < max; i++)
 			{
 				total++;
 
-				int x = direction == axis::HORIZONTAL ? i : col;
-				int y = direction == axis::VERTICAL ? i : row;
+				size_t x = direction == axis::HORIZONTAL ? i : col;
+				size_t y = direction == axis::VERTICAL ? i : row;
 
 				int height = grid.get(y, x);
 
