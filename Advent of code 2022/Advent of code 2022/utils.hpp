@@ -19,6 +19,17 @@ public:
 		}
 	}
 
+	grid(size_t rows, size_t cols, myType default_value) : grid{ rows, cols }
+	{
+		for (size_t i = 0; i < rows; i++)
+		{
+			for (size_t j = 0; j < cols; j++)
+			{
+				values[i][j] = default_value;
+			}
+		}
+	}
+
 	inline void set(myType value, size_t row, size_t col)
 	{
 		values[row][col] = value;
@@ -36,7 +47,7 @@ public:
 	{
 		for (size_t i = 0; i < m_rows; i++)
 		{
-			for (size_t j = 0; j < m_rows; j++)
+			for (size_t j = 0; j < m_cols; j++)
 			{
 				std::cout << values[i][j];
 			}

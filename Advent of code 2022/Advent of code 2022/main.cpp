@@ -27,7 +27,8 @@ int main()
 	//aoc2022::problem_08().run_a();
 	//aoc2022::problem_08().run_b();
 	//aoc2022::problem_09().run_a();
-	aoc2022::problem_09().run_b_test();
+	aoc2022::problem_09().run_a();
+	aoc2022::problem_09().run_b();
 
 	return 0;
 }
