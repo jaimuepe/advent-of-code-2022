@@ -23,6 +23,7 @@ int main()
 	//aoc2022::problem_06().run_b();
 	//aoc2022::problem_07().run_a();
 	//aoc2022::problem_07().run_b();
+	aoc2022::problem_08().run_a();
 	aoc2022::problem_08().run_b();
 
 	return 0;

@@ -4,6 +4,11 @@
 
 namespace aoc2022
 {
+	struct tree_grid : grid<int>
+	{
+		tree_grid(size_t rows, size_t cols) : grid(rows, cols) {}
+	};
+
 	enum axis
 	{
 		HORIZONTAL,
@@ -17,15 +22,15 @@ namespace aoc2022
 
 		A_IMPL()
 		{
-			grid<int> height_grid = create_grid(lines);
+			tree_grid grid = create_grid(lines);
 
 			int result = 0;
 
-			for (size_t i = 0; i < height_grid.rows(); i++)
+			for (size_t i = 0; i < grid.rows(); i++)
 			{
-				for (size_t j = 0; j < height_grid.cols(); j++)
+				for (size_t j = 0; j < grid.cols(); j++)
 				{
-					if (is_visible(height_grid, i, j))
+					if (is_visible(grid, i, j))
 					{
 						result++;
 					}
@@ -37,31 +42,90 @@ namespace aoc2022
 
 		B_IMPL()
 		{
-			grid<int> height_grid = create_grid(lines);
+			tree_grid grid = create_grid(lines);
 
-			int result = 0;
+			int best_scenic_score = -1;
 
-			for (size_t i = 0; i < height_grid.rows(); i++)
+			for (size_t i = 0; i < grid.rows(); i++)
 			{
-				for (size_t j = 0; j < height_grid.cols(); j++)
+				for (size_t j = 0; j < grid.cols(); j++)
 				{
+					best_scenic_score = std::max(best_scenic_score, get_scenic_score(grid, i, j));
 				}
 			}
+
+			print_result(best_scenic_score);
 		}
 
 	private:
 
 		int get_scenic_score(
-			grid<int>& grid,
+			tree_grid& grid,
 			size_t row,
 			size_t col)
 		{
 			int scenic_score = 1;
-			return 0;
+
+			scenic_score *= get_scenic_score_axis(grid, row, col, axis::HORIZONTAL);
+			scenic_score *= get_scenic_score_axis(grid, row, col, axis::VERTICAL);
+
+			return scenic_score;
+		}
+
+		int get_scenic_score_axis(
+			tree_grid& grid,
+			size_t row,
+			size_t col,
+			axis direction)
+		{
+			int scenic_score = 1;
+
+			size_t r = direction == axis::HORIZONTAL ? col : row;
+
+			int value = grid.get(row, col);
+
+			int total = 0;
+			for (int i = r - 1; i >= 0; i--)
+			{
+				total++;
+
+				int x = direction == axis::HORIZONTAL ? i : col;
+				int y = direction == axis::VERTICAL ? i : row;
+
+				int height = grid.get(y, x);
+
+				if (height >= value)
+				{
+					break;
+				}
+
+			}
+			scenic_score *= total;
+
+			int max = direction == axis::HORIZONTAL ? grid.cols() : grid.rows();
+
+			total = 0;
+			for (int i = r + 1; i < max; i++)
+			{
+				total++;
+
+				int x = direction == axis::HORIZONTAL ? i : col;
+				int y = direction == axis::VERTICAL ? i : row;
+
+				int height = grid.get(y, x);
+
+				if (height >= value)
+				{
+					break;
+				}
+			}
+
+			scenic_score *= total;
+			return scenic_score;
 		}
 
 		bool is_visible(
-			grid<int>& grid,
+			tree_grid& grid,
 			size_t row,
 			size_t col)
 		{
@@ -91,7 +155,7 @@ namespace aoc2022
 		}
 
 		int get_highest_tree(
-			grid<int>& grid,
+			tree_grid& grid,
 			size_t from,
 			size_t to,
 			size_t fixed,
@@ -117,12 +181,12 @@ namespace aoc2022
 			return highest;
 		}
 
-		grid<int> create_grid(std::vector<std::string>& lines)
+		tree_grid create_grid(std::vector<std::string>& lines)
 		{
 			size_t cols = lines[0].size();
 			size_t rows = lines.size();
 
-			grid<int> grid{ cols, rows };
+			tree_grid grid{ cols, rows };
 
 			for (size_t i = 0; i < lines.size(); i++)
 			{
