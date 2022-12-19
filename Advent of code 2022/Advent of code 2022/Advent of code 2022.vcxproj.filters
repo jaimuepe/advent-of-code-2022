@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\problem_10">
+      <UniqueIdentifier>{c59b30df-e360-4f56-a39b-64f9167b8ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\problem_10">
+      <UniqueIdentifier>{b53c57cc-7379-4ea4-b997-f545a71faa69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="problem_01.hpp">
@@ -51,11 +57,20 @@
     <ClInclude Include="problem_09.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="grid.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu.hpp">
+      <Filter>Header Files\problem_10</Filter>
+    </ClInclude>
+    <ClInclude Include="op.hpp">
+      <Filter>Header Files\problem_10</Filter>
+    </ClInclude>
     <ClInclude Include="problem_10.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="grid.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="crt.hpp">
+      <Filter>Header Files\problem_10</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,19 +131,22 @@
     <Text Include="10_TEST.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="10.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem_10.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="grid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="utils.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu.cpp">
+      <Filter>Source Files\problem_10</Filter>
+    </ClCompile>
+    <ClCompile Include="crt.cpp">
+      <Filter>Source Files\problem_10</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
