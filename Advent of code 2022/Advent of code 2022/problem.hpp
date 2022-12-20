@@ -65,6 +65,7 @@ namespace aoc2022
 		template<class myType>
 		void print_result(myType result)
 		{
+			std::cout.precision(35);
 			std::cout << "Result: " << result << '\n' << '\n';
 		}
 

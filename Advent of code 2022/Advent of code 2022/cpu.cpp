@@ -43,7 +43,7 @@ namespace aoc2022
 			{
 				m_op->complete();
 
-				delete m_op;
+				//delete m_op;
 				m_op = nullptr;
 			}
 		}

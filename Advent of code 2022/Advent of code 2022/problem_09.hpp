@@ -110,7 +110,7 @@ namespace aoc2022
 				else
 				{
 					// rest
-					c = '0' + static_cast<int>(m_length) - 1 - i;
+					c = '0' + static_cast<char>(m_length - 1 - i);
 				}
 
 				grid.set(c, y, x);

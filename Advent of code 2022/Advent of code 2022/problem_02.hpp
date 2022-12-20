@@ -63,7 +63,7 @@ namespace aoc2022
 
 		char from_index(int i)
 		{
-			return i + 'A';
+			return static_cast<char>(i) + 'A';
 		}
 
 		int shape_score(char c)

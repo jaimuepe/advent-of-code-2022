@@ -33,8 +33,8 @@ int main()
 	//aoc2022::problem_09().run_b();
 	//aoc2022::problem_10().run_a();
 	//aoc2022::problem_10().run_b();
-	aoc2022::problem_11().run_a_test();
-	//aoc2022::problem_10().run_b();
+	//aoc2022::problem_11().run_a();
+	aoc2022::problem_11().run_b_test();
 
 	return 0;
 }

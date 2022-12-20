@@ -7,29 +7,41 @@ namespace aoc2022
 {
 	struct monkey
 	{
-
 	public:
+
 		monkey(
 			int id,
-			std::vector<int>& items,
-			std::function<int(int)>& op,
-			std::function<bool(int)>& test,
-			std::function<void()>& if_true,
-			std::function<void()> if_false);
+			const std::vector<long double>& items,
+			const std::function<long double(long double)>& op,
+			const std::function<bool(long double)>& test,
+			const std::function<void(int, long double)>& if_true,
+			const std::function<void(int, long double)>& if_false);
+
+		inline int id() const { return m_id; }
+
+		inline long double inspected_items_amount() const { return m_inspected_items_amount; }
+
+		void play();
+
+		void add_item(long double item);
+
+		void print_items();
 
 	private:
 
 		int m_id;
 
-		std::vector<int> m_items;
+		long double m_inspected_items_amount{ 0 };
 
-		std::function<int(int)> m_op;
+		std::vector<long double> m_items;
 
-		std::function<bool(int)> m_test;
+		std::function<long double(long double)> m_op;
 
-		std::function<void()> m_if_true;
+		std::function<bool(long double)> m_test;
 
-		std::function<void()> m_if_false;
+		std::function<void(int, long double)> m_if_true;
+
+		std::function<void(int, long double)> m_if_false;
 	};
 }
 

@@ -16,7 +16,7 @@ namespace aoc2022
 
 	protected:
 
-		virtual void run_a_impl(std::vector<std::string>& lines) override {}
+		virtual void run_a_impl(std::vector<std::string>&) override {}
 
 		virtual void run_b_impl(std::vector<std::string>& lines) override
 		{

@@ -100,11 +100,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,12 +114,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +135,8 @@
     <ClInclude Include="crt.hpp" />
     <ClInclude Include="grid.hpp" />
     <ClInclude Include="monkey.hpp" />
+    <ClInclude Include="monkey_collection.h" />
+    <ClInclude Include="monkey_parser.hpp" />
     <ClInclude Include="op.hpp" />
     <ClInclude Include="problem_01.hpp" />
     <ClInclude Include="problem_02.hpp" />
@@ -171,6 +176,7 @@
     <Text Include="09_TEST.txt" />
     <Text Include="10.txt" />
     <Text Include="10_TEST.txt" />
+    <Text Include="11.txt" />
     <Text Include="11_TEST.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +184,7 @@
     <ClCompile Include="crt.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monkey.cpp" />
+    <ClCompile Include="monkey_parser.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
