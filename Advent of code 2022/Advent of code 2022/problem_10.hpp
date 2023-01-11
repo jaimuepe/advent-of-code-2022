@@ -2,78 +2,79 @@
 
 #include "problem.hpp"
 
-#include "cpu.hpp"
-#include "crt.hpp"
+#include "10/cpu.hpp"
+#include "10/crt.hpp"
 
 namespace aoc2022
 {
-	class problem_10 : public problem
-	{
-	public:
-		problem_10() : problem(10) {}
+    class problem_10 final : public problem
+    {
+    public:
+        problem_10() : problem(10)
+        {
+        }
 
-		A_IMPL()
-		{
-			cpu cpu{};
+        A_IMPL()
+        {
+            cpu cpu{};
 
-			int total_signal_strength = 0;
+            int total_signal_strength = 0;
 
-			int i = 0;
+            int i = 0;
 
-			while (i < lines.size())
-			{
-				cpu.start_cycle();
+            while (i < lines.size())
+            {
+                cpu.start_cycle();
 
-				if (!cpu.has_op())
-				{
-					auto& line = lines[i++];
+                if (!cpu.has_op())
+                {
+                    auto& line = lines[i++];
 
-					std::vector args = split(line, ' ');
-					cpu.execute(args);
-				}
+                    std::vector args = split(line, ' ');
+                    cpu.execute(args);
+                }
 
-				cpu.cycle();
+                cpu.cycle();
 
-				int cycles = cpu.cycles();
-				if (cycles == 20 || cycles > 40 && ((cycles - 20) % 40) == 0)
-				{
-					total_signal_strength += cpu.cycles() * cpu.rx();
-				}
+                const int cycles = cpu.cycles();
+                if (cycles == 20 || cycles > 40 && ((cycles - 20) % 40) == 0)
+                {
+                    total_signal_strength += cpu.cycles() * cpu.rx();
+                }
 
-				cpu.finish_cycle();
-			}
+                cpu.finish_cycle();
+            }
 
-			print_result(total_signal_strength);
-		}
+            print_result(total_signal_strength);
+        }
 
-		B_IMPL()
-		{
-			cpu cpu{};
+        B_IMPL()
+        {
+            cpu cpu{};
 
-			crt crt{ &cpu };
+            crt crt{&cpu};
 
-			int i = 0;
+            size_t i = 0;
 
-			while (i < lines.size())
-			{
-				cpu.start_cycle();
+            while (i < lines.size())
+            {
+                cpu.start_cycle();
 
-				if (!cpu.has_op())
-				{
-					auto& line = lines[i++];
+                if (!cpu.has_op())
+                {
+                    auto& line = lines[i++];
 
-					std::vector args = split(line, ' ');
-					cpu.execute(args);
-				}
+                    std::vector args = split(line, ' ');
+                    cpu.execute(args);
+                }
 
-				cpu.cycle();
-				crt.update();
+                cpu.cycle();
+                crt.update();
 
-				cpu.finish_cycle();
-			}
+                cpu.finish_cycle();
+            }
 
-			crt.draw();
-		}
-	};
+            crt.draw();
+        }
+    };
 }
-

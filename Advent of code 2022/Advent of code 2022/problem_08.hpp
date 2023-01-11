@@ -5,203 +5,202 @@
 
 namespace aoc2022
 {
-	struct tree_grid : grid<int>
-	{
-		tree_grid(size_t rows, size_t cols) : grid(rows, cols) {}
-	};
+    struct tree_grid : grid<int>
+    {
+        tree_grid(const size_t rows, const size_t cols) : grid(rows, cols)
+        {
+        }
+    };
 
-	enum axis
-	{
-		HORIZONTAL,
-		VERTICAL
-	};
+    enum axis
+    {
+        HORIZONTAL,
+        VERTICAL
+    };
 
-	class problem_08 : public problem
-	{
-	public:
-		problem_08() : problem(8) {}
+    class problem_08 final : public problem
+    {
+    public:
+        problem_08() : problem(8)
+        {
+        }
 
-		A_IMPL()
-		{
-			tree_grid grid = create_grid(lines);
+        A_IMPL()
+        {
+            tree_grid grid = create_grid(lines);
 
-			int result = 0;
+            int result = 0;
 
-			for (size_t i = 0; i < grid.rows(); i++)
-			{
-				for (size_t j = 0; j < grid.cols(); j++)
-				{
-					if (is_visible(grid, i, j))
-					{
-						result++;
-					}
-				}
-			}
+            for (size_t i = 0; i < grid.rows(); i++)
+            {
+                for (size_t j = 0; j < grid.cols(); j++)
+                {
+                    if (is_visible(grid, i, j))
+                    {
+                        result++;
+                    }
+                }
+            }
 
-			print_result(result);
-		}
+            print_result(result);
+        }
 
-		B_IMPL()
-		{
-			tree_grid grid = create_grid(lines);
+        B_IMPL()
+        {
+            tree_grid grid = create_grid(lines);
 
-			int best_scenic_score = -1;
+            int best_scenic_score = -1;
 
-			for (size_t i = 0; i < grid.rows(); i++)
-			{
-				for (size_t j = 0; j < grid.cols(); j++)
-				{
-					best_scenic_score = std::max(best_scenic_score, get_scenic_score(grid, i, j));
-				}
-			}
+            for (size_t i = 0; i < grid.rows(); i++)
+            {
+                for (size_t j = 0; j < grid.cols(); j++)
+                {
+                    best_scenic_score = std::max(best_scenic_score, get_scenic_score(grid, i, j));
+                }
+            }
 
-			print_result(best_scenic_score);
-		}
+            print_result(best_scenic_score);
+        }
 
-	private:
+    private:
+        static int get_scenic_score(
+            tree_grid& grid,
+            size_t row,
+            size_t col)
+        {
+            int scenic_score = 1;
 
-		int get_scenic_score(
-			tree_grid& grid,
-			size_t row,
-			size_t col)
-		{
-			int scenic_score = 1;
+            scenic_score *= get_scenic_score_axis(grid, row, col, axis::HORIZONTAL);
+            scenic_score *= get_scenic_score_axis(grid, row, col, axis::VERTICAL);
 
-			scenic_score *= get_scenic_score_axis(grid, row, col, axis::HORIZONTAL);
-			scenic_score *= get_scenic_score_axis(grid, row, col, axis::VERTICAL);
+            return scenic_score;
+        }
 
-			return scenic_score;
-		}
+        static int get_scenic_score_axis(
+            tree_grid& grid,
+            const size_t row,
+            const size_t col,
+            const axis direction)
+        {
+            int scenic_score = 1;
 
-		int get_scenic_score_axis(
-			tree_grid& grid,
-			size_t row,
-			size_t col,
-			axis direction)
-		{
-			int scenic_score = 1;
+            const size_t r = direction == axis::HORIZONTAL ? col : row;
 
-			size_t r = direction == axis::HORIZONTAL ? col : row;
+            const int value = grid.get(row, col);
 
-			int value = grid.get(row, col);
+            int total = 0;
+            for (int i = static_cast<int>(r - 1); i >= 0; i--)
+            {
+                total++;
 
-			int total = 0;
-			for (int i = static_cast<int>(r - 1); i >= 0; i--)
-			{
-				total++;
+                const size_t x = direction == axis::HORIZONTAL ? i : col;
+                const size_t y = direction == axis::VERTICAL ? i : row;
 
-				size_t x = direction == axis::HORIZONTAL ? i : col;
-				size_t y = direction == axis::VERTICAL ? i : row;
+                if (const int height = grid.get(y, x); height >= value)
+                {
+                    break;
+                }
+            }
+            scenic_score *= total;
 
-				int height = grid.get(y, x);
+            const size_t max = direction == axis::HORIZONTAL ? grid.cols() : grid.rows();
 
-				if (height >= value)
-				{
-					break;
-				}
+            total = 0;
+            for (size_t i = r + 1; i < max; i++)
+            {
+                total++;
 
-			}
-			scenic_score *= total;
+                const size_t x = direction == axis::HORIZONTAL ? i : col;
+                const size_t y = direction == axis::VERTICAL ? i : row;
 
-			size_t max = direction == axis::HORIZONTAL ? grid.cols() : grid.rows();
+                const int height = grid.get(y, x);
 
-			total = 0;
-			for (size_t i = r + 1; i < max; i++)
-			{
-				total++;
+                if (height >= value)
+                {
+                    break;
+                }
+            }
 
-				size_t x = direction == axis::HORIZONTAL ? i : col;
-				size_t y = direction == axis::VERTICAL ? i : row;
+            scenic_score *= total;
+            return scenic_score;
+        }
 
-				int height = grid.get(y, x);
+        bool is_visible(
+            tree_grid& grid,
+            const size_t row,
+            const size_t col) const
+        {
+            const int n = grid.get(row, col);
 
-				if (height >= value)
-				{
-					break;
-				}
-			}
+            if (get_highest_tree(grid, 0, row, col, axis::VERTICAL) < n)
+            {
+                return true;
+            }
 
-			scenic_score *= total;
-			return scenic_score;
-		}
+            if (get_highest_tree(grid, row + 1, grid.rows(), col, axis::VERTICAL) < n)
+            {
+                return true;
+            }
 
-		bool is_visible(
-			tree_grid& grid,
-			size_t row,
-			size_t col)
-		{
-			int n = grid.get(row, col);
+            if (get_highest_tree(grid, 0, col, row, axis::HORIZONTAL) < n)
+            {
+                return true;
+            }
 
-			if (get_highest_tree(grid, 0, row, col, axis::VERTICAL) < n)
-			{
-				return true;
-			}
+            if (get_highest_tree(grid, col + 1, grid.cols(), row, axis::HORIZONTAL) < n)
+            {
+                return true;
+            }
 
-			if (get_highest_tree(grid, row + 1, grid.rows(), col, axis::VERTICAL) < n)
-			{
-				return true;
-			}
+            return false;
+        }
 
-			if (get_highest_tree(grid, 0, col, row, axis::HORIZONTAL) < n)
-			{
-				return true;
-			}
+        int get_highest_tree(
+            tree_grid& grid,
+            const size_t from,
+            const size_t to,
+            const size_t fixed,
+            const axis direction) const
+        {
+            int highest = -1;
 
-			if (get_highest_tree(grid, col + 1, grid.cols(), row, axis::HORIZONTAL) < n)
-			{
-				return true;
-			}
+            for (size_t i = from; i < to; i++)
+            {
+                int height;
 
-			return false;
-		}
+                if (direction == axis::HORIZONTAL)
+                {
+                    height = grid.get(fixed, i);
+                }
+                else
+                {
+                    height = grid.get(i, fixed);
+                }
 
-		int get_highest_tree(
-			tree_grid& grid,
-			size_t from,
-			size_t to,
-			size_t fixed,
-			axis direction)
-		{
-			int highest = -1;
+                highest = std::max(highest, height);
+            }
+            return highest;
+        }
 
-			for (size_t i = from; i < to; i++)
-			{
-				int height;
+        static tree_grid create_grid(const std::vector<std::string>& lines)
+        {
+            const size_t cols = lines[0].size();
+            const size_t rows = lines.size();
 
-				if (direction == axis::HORIZONTAL)
-				{
-					height = grid.get(fixed, i);
-				}
-				else
-				{
-					height = grid.get(i, fixed);
-				}
+            tree_grid grid{cols, rows};
 
-				highest = std::max(highest, height);
-			}
-			return highest;
-		}
+            for (size_t i = 0; i < lines.size(); i++)
+            {
+                auto& line = lines[i];
 
-		tree_grid create_grid(std::vector<std::string>& lines)
-		{
-			size_t cols = lines[0].size();
-			size_t rows = lines.size();
+                for (size_t j = 0; j < line.size(); j++)
+                {
+                    const int val = line[j] - '0';
+                    grid.set(val, i, j);
+                }
+            }
 
-			tree_grid grid{ cols, rows };
-
-			for (size_t i = 0; i < lines.size(); i++)
-			{
-				auto& line = lines[i];
-
-				for (size_t j = 0; j < line.size(); j++)
-				{
-					int val = line[j] - '0';
-					grid.set(val, i, j);
-				}
-			}
-
-			return grid;
-		}
-	};
+            return grid;
+        }
+    };
 }
-

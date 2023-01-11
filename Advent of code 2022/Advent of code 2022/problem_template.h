@@ -4,22 +4,21 @@
 
 namespace aoc2022
 {
-	class problem_XX : public problem
-	{
-	public:
-		problem_XX() : problem(0) {}
+    class problem_xx final : public problem
+    {
+    public:
+        problem_xx() : problem(0)
+        {
+        }
 
-		A_IMPL()
-		{
+        A_IMPL()
+        {
+        }
 
-		}
+        B_IMPL()
+        {
+        }
 
-		B_IMPL()
-		{
-		}
-
-	private:
-
-	};
+    private:
+    };
 }
-

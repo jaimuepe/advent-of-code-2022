@@ -7,11 +7,11 @@
 
 namespace aoc2022
 {
-	void cpu::execute(std::vector<std::string>& args)
+	void cpu::execute(const std::vector<std::string>& args)
 	{
 		if (has_op())
 		{
-			throw std::exception("cant execute command, cpu is bussy");
+			throw std::exception("cant execute command, cpu is busy");
 		}
 
 		op* op;
@@ -21,13 +21,13 @@ namespace aoc2022
 		}
 		else
 		{
-			int amount = atoi(args[1].c_str());
+			const int amount = atoi(args[1].c_str());
 			op = new add_op{ amount, this };
 		}
 		m_op = op;
 	}
 
-	void cpu::cycle()
+	void cpu::cycle() const
 	{
 		if (m_op)
 		{

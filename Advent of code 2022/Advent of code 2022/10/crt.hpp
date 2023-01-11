@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cpu.hpp"
-#include "grid.hpp"
+#include "../grid.hpp"
 
 #include <iostream>
 
@@ -14,7 +14,7 @@ namespace aoc2022
 
 	struct crt
 	{
-		crt(cpu* cpu);
+		explicit crt(cpu* cpu);
 
 		void update();
 		

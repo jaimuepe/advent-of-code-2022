@@ -51,19 +51,21 @@ namespace aoc2022
 		}
 
 	protected:
+		
+		~problem() = default;
 
-		problem(int day) : m_day{ day } {	}
+		explicit problem(const int day) : m_day{ day } {	}
 
 		virtual void run_a_impl(std::vector<std::string>& lines) = 0;
 		virtual void run_b_impl(std::vector<std::string>& lines) = 0;
 
-		void print_title(std::string suffix)
+		void print_title(const std::string& suffix)
 		{
 			std::cout << "### ADVENT OF CODE - DAY " << std::format("{:02}", m_day) << " " << suffix << '\n' << '\n';
 		}
 
-		template<class myType>
-		void print_result(myType result)
+		template<class MyType>
+		static void print_result(MyType result)
 		{
 			std::cout.precision(35);
 			std::cout << "Result: " << result << '\n' << '\n';

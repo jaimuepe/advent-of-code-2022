@@ -2,27 +2,27 @@
 
 #include <iostream>
 
-template<class myType>
+template<class MyType>
 struct grid
 {
 public:
 
 	grid(size_t rows, size_t cols) : m_rows{ rows }, m_cols{ cols }
 	{
-		values = new myType * [m_rows];
+		values = new MyType * [m_rows];
 
 		for (size_t i = 0; i < m_rows; i++)
 		{
-			values[i] = new myType[m_cols];
+			values[i] = new MyType[m_cols];
 		}
 	}
 
-	grid(size_t rows, size_t cols, myType default_value) : grid{ rows, cols }
+	grid(size_t rows, size_t cols, MyType default_value) : grid{ rows, cols }
 	{
 		clear(default_value);
 	}
 
-	void clear(myType clear_value)
+	void clear(MyType clear_value)
 	{
 		for (size_t i = 0; i < m_rows; i++)
 		{
@@ -33,18 +33,18 @@ public:
 		}
 	}
 
-	inline void set(myType value, size_t row, size_t col)
+	inline void set(MyType value, size_t row, size_t col)
 	{
 		values[row][col] = value;
 	}
 
-	inline myType get(size_t row, size_t col)
+	inline MyType get(size_t row, size_t col)
 	{
 		return values[row][col];
 	}
 
-	inline size_t rows() { return m_rows; }
-	inline size_t cols() { return m_cols; }
+	inline size_t rows() const { return m_rows; }
+	inline size_t cols() const { return m_cols; }
 
 	void print()
 	{
@@ -60,7 +60,7 @@ public:
 
 private:
 
-	myType** values;
+	MyType** values;
 
 	size_t m_rows;
 	size_t m_cols;

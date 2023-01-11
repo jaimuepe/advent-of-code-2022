@@ -6,12 +6,12 @@ namespace aoc2022
 
 	void crt::update()
 	{
-		int cycle_idx = m_cpu->cycles() - 1;
+		const int cycle_idx = m_cpu->cycles() - 1;
 
-		int pixel_col = cycle_idx % 40;
-		int pixel_row = cycle_idx / 40;
+		const int pixel_col = cycle_idx % 40;
+		const int pixel_row = cycle_idx / 40;
 
-		int sprite_col = m_cpu->rx();
+		const int sprite_col = m_cpu->rx();
 
 		for (int i = sprite_col - 1; i <= sprite_col + 1; i++)
 		{
