@@ -48,7 +48,7 @@ namespace aoc2022
             const int n = atoi(tok.c_str());
             starting_items.push_back(n);
         }
-
+        
         return starting_items;
     }
 

@@ -33,23 +33,27 @@ namespace aoc2022
         {
             for (int i = 0; i < rounds; i++)
             {
+                const int round = i + 1;
+
                 for (auto& monke : collection)
                 {
                     monke.play();
                 }
 
-                int round = i + 1;
-
-                if (round == 1 || round == 20 || (round > 0 && round % 1000 == 0))
+                if (true)
                 {
-                    std::cout << "== After round " << round << " ==\n\n";
-
-                    for (auto& monke : collection)
+                    if (round == 1 || round == 20 || (round > 0 && round % 1000 == 0))
                     {
-                        std::cout << "Monkey " << monke.id() << " inspected items " << monke.inspected_items_amount() <<
-                            " times.\n";
+                        std::cout << "== After round " << round << " ==\n\n";
+
+                        for (auto& monke : collection)
+                        {
+                            std::cout << "Monkey " << monke.id() << " inspected items " << monke.
+                                inspected_items_amount() <<
+                                " times.\n";
+                        }
+                        std::cout << "\n";
                     }
-                    std::cout << "\n";
                 }
             }
 

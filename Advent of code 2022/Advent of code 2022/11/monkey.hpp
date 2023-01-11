@@ -20,11 +20,11 @@ namespace aoc2022
 
         [[nodiscard]] long long inspected_items_amount() const { return m_inspected_items_amount; }
 
-        void play();
+        void play(const int round);
 
         void add_item(long long item);
 
-        void print_items();
+        void print_items() const;
 
     private:
         int m_id;

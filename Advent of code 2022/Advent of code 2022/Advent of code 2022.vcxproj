@@ -136,6 +136,7 @@
     <ClInclude Include="10\op.hpp" />
     <ClInclude Include="11\monkey.hpp" />
     <ClInclude Include="11\monkey_collection.h" />
+    <ClInclude Include="11\monkey_op.hpp" />
     <ClInclude Include="11\monkey_parser.hpp" />
     <ClInclude Include="grid.hpp" />
     <ClInclude Include="problem_01.hpp" />

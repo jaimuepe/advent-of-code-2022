@@ -20,10 +20,22 @@ namespace aoc2022
     {
     }
 
-    void monkey::play()
+    void monkey::play(const int round)
     {
+        bool print = round == 1;
+
+        if (print)
+        {
+            std::cout << "Monkey " << m_id << ":\n";
+        }
+
         for (long long worry_level : m_items)
         {
+            if (print)
+            {
+                std::cout << "\tMonkey inspects an item with a worry level of " << worry_level << "\n";
+            }
+
             worry_level = m_op(worry_level);
             //worry_level /= 3;
 
@@ -42,12 +54,12 @@ namespace aoc2022
         m_items.clear();
     }
 
-    void monkey::add_item(long long item)
+    void monkey::add_item(const long long item)
     {
         m_items.push_back(item);
     }
 
-    void monkey::print_items()
+    void monkey::print_items() const
     {
         for (size_t i = 0; i < m_items.size(); i++)
         {
