@@ -3,24 +3,29 @@
 #include <functional>
 #include <vector>
 
+#include "monkey_op.hpp"
+
 namespace aoc2022
 {
+    struct monkey_collection;
+
     struct monkey
     {
     public:
         monkey(
             int id,
-            std::vector<long long> items,
-            std::function<long long(long long)> op,
-            std::function<bool(long long)> test,
-            std::function<void(int, long long)> if_true,
-            std::function<void(int, long long)> if_false);
+            std::vector<int> items,
+            monkey_op op,
+            int test_division,
+            int throw_to_if_true,
+            int throw_to_if_false,
+            monkey_collection* collection);
 
         [[nodiscard]] int id() const { return m_id; }
 
         [[nodiscard]] long long inspected_items_amount() const { return m_inspected_items_amount; }
 
-        void play(const int round);
+        void play(int round);
 
         void add_item(long long item);
 
@@ -33,12 +38,16 @@ namespace aoc2022
 
         std::vector<long long> m_items;
 
-        std::function<long long(long long)> m_op;
+        monkey_op m_op;
 
-        std::function<bool(long long)> m_test;
+        int m_test_division;
 
-        std::function<void(int, long long)> m_if_true;
+        int m_throw_to_if_true;
 
-        std::function<void(int, long long)> m_if_false;
+        int m_throw_to_if_false;
+
+        monkey_collection* m_collection;
+
+        [[nodiscard]] long long eval_op(long long worry_level) const;
     };
 }

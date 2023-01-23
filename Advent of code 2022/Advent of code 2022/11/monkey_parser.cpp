@@ -14,17 +14,17 @@ namespace aoc2022
     {
         const int index = parse_index(monkey_raw);
 
-        const std::vector<long long> starting_items = parse_starting_items(starting_items_raw);
+        const std::vector<int> starting_items = parse_starting_items(starting_items_raw);
 
         const auto op = parse_op(op_raw);
 
-        const auto test = parse_test(test_raw);
+        const int test = parse_test(test_raw);
 
-        const auto if_true = parse_if_true(if_true_raw, collection);
+        const int if_true = parse_if_true(if_true_raw);
 
-        const auto if_false = parse_if_false(if_false_raw, collection);
+        const int if_false = parse_if_false(if_false_raw);
 
-        return monkey{index, starting_items, op, test, if_true, if_false};
+        return monkey{index, starting_items, op, test, if_true, if_false, &collection};
     }
 
     int parse_index(const std::string& monkey_raw)
@@ -34,9 +34,9 @@ namespace aoc2022
         return index;
     }
 
-    std::vector<long long> parse_starting_items(const std::string& starting_items_raw)
+    std::vector<int> parse_starting_items(const std::string& starting_items_raw)
     {
-        std::vector<long long> starting_items{};
+        std::vector<int> starting_items{};
 
         constexpr std::string_view prefix{"  Starting items: "};
 
@@ -48,109 +48,67 @@ namespace aoc2022
             const int n = atoi(tok.c_str());
             starting_items.push_back(n);
         }
-        
+
         return starting_items;
     }
 
-    std::function<long long(long long)> parse_op(const std::string& op_raw)
+    monkey_op parse_op(const std::string& op_raw)
     {
         constexpr std::string_view prefix{"  Operation: new = "};
 
         const std::string substr = op_raw.substr(prefix.size());
         const auto tokens = split(substr, ' ');
 
-        long long a;
+        int a;
         if (tokens[0] == "old")
         {
-            a = std::numeric_limits<long long>::max();
+            a = -1;
         }
         else
         {
-            a = atoi(tokens[0].c_str());
+            char* p_end;
+            a = strtol(tokens[0].c_str(), &p_end, 10);
         }
 
-        long long b;
+        int b;
         if (tokens[2] == "old")
         {
-            b = std::numeric_limits<long long>::max();
+            b = -1;
         }
         else
         {
-            b = atoi(tokens[2].c_str());
+            char* p_end;
+            b = strtol(tokens[2].c_str(), &p_end, 10);
         }
 
-        char op = tokens[1][0];
+        const char symbol = tokens[1][0];
 
-        return [a, b, op](const long long old)
-        {
-            long long aa = a;
-            if (aa == std::numeric_limits<long long>::max())
-            {
-                aa = old;
-            }
+        monkey_op op{};
+        op.op_symbol = symbol;
+        op.a = a;
+        op.b = b;
 
-            long long bb = b;
-            if (bb == std::numeric_limits<long long>::max())
-            {
-                bb = old;
-            }
-
-            long long result;
-            if (op == '+')
-            {
-                result = aa + bb;
-            }
-            else if (op == '*')
-            {
-                result = aa * bb;
-            }
-            else
-            {
-                std::cerr << "invalid op symbol: " << op << '\n';
-                result = 0LL;
-            }
-
-            //std::cout << result << std::endl;
-            return result;
-        };
+        return op;
     }
 
-    std::function<bool(long long)> parse_test(const std::string& test_raw)
+    int parse_test(const std::string& test_raw)
     {
         int d;
         sscanf_s(test_raw.c_str(), "  Test: divisible by %i", &d);
-
-        return [d](const long long worry_level)
-        {
-            return worry_level % d == 0;
-        };
+        return d;
     }
 
-    std::function<void(int, long long)> parse_if_true(
-        const std::string& if_true_raw,
-        monkey_collection& collection)
+    int parse_if_true(const std::string& if_true_raw)
     {
         int monkey_id;
         sscanf_s(if_true_raw.c_str(), "    If true: throw to monkey %i", &monkey_id);
-
-        return [&collection, monkey_id](int, const long long item)
-        {
-            monkey& monke = collection.find(monkey_id);
-            monke.add_item(item);
-        };
+        return monkey_id;
     }
 
-    std::function<void(int, long long)> parse_if_false(
-        const std::string& if_false_raw,
-        monkey_collection& collection)
+    int parse_if_false(const std::string& if_false_raw)
     {
         int monkey_id;
         sscanf_s(if_false_raw.c_str(), "    If false: throw to monkey %i", &monkey_id);
-
-        return [&collection, monkey_id](int, const long long item)
-        {
-            monkey& monke = collection.find(monkey_id);
-            monke.add_item(item);
-        };
+        return monkey_id;
     }
 }

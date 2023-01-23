@@ -18,35 +18,35 @@ namespace aoc2022
 
         A_IMPL()
         {
-            monkey_collection collection = create_collection(lines);
-            run(collection, 20);
+            run(lines, 20);
         }
 
         B_IMPL()
         {
-            monkey_collection collection = create_collection(lines);
-            run(collection, 10000);
+            run(lines, 10000);
         }
 
     private:
-        static void run(monkey_collection& collection, const int rounds)
+        static void run(std::vector<std::string> lines, const int rounds)
         {
+            monkey_collection* collection = create_collection(lines);
+
             for (int i = 0; i < rounds; i++)
             {
                 const int round = i + 1;
 
-                for (auto& monke : collection)
+                for (auto& monke : collection->m_monkeys)
                 {
-                    monke.play();
+                    monke.play(round);
                 }
 
                 if (true)
                 {
-                    if (round == 1 || round == 20 || (round > 0 && round % 1000 == 0))
+                    if (round == 10 || round == 20 || round == 50 || round == 10 || round == 500)
                     {
                         std::cout << "== After round " << round << " ==\n\n";
 
-                        for (auto& monke : collection)
+                        for (auto& monke : collection->m_monkeys)
                         {
                             std::cout << "Monkey " << monke.id() << " inspected items " << monke.
                                 inspected_items_amount() <<
@@ -58,7 +58,9 @@ namespace aoc2022
             }
 
             std::vector<long long> inspected_items_amounts{};
-            for (const auto& monke : collection)
+            inspected_items_amounts.reserve(collection->m_monkeys.size());
+
+            for (const auto& monke : collection->m_monkeys)
             {
                 inspected_items_amounts.push_back(monke.inspected_items_amount());
             }
@@ -70,9 +72,9 @@ namespace aoc2022
             print_result(monkey_business);
         }
 
-        static monkey_collection create_collection(std::vector<std::string>& lines)
+        static monkey_collection* create_collection(std::vector<std::string>& lines)
         {
-            monkey_collection collection{};
+            const auto collection = new monkey_collection();
 
             for (size_t i = 0; i < lines.size(); i += 7)
             {
@@ -90,9 +92,9 @@ namespace aoc2022
                     test_raw,
                     if_true_raw,
                     if_false_raw,
-                    collection);
+                    *collection);
 
-                collection.register_monkey(monke);
+                collection->m_monkeys.push_back(monke);
             }
 
             return collection;
