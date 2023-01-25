@@ -1,4 +1,4 @@
-# advent-of-code-2022      Cancel changes
+# advent-of-code-2022
 
 
 Programs for days 1-11. It got too cumbersome in c++ I switched to c#.
